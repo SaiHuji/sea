@@ -1,0 +1,488 @@
+/* google fontsからフォントの読み込み */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+html, body {
+  background-color: rgb(200, 247, 253); /* 青空の色 */
+  overflow-x: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.spot {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* タイトル画面 */
+.titleView {
+  position: absolute;
+  top:30%;
+  left:51.5%;
+  transform:translate(-50%,-50%);
+  font-size: 3vw;
+}
+
+.titleView h1 {
+  color: black;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* スポットライト調整ボタン */
+.scale {
+  padding: 0px 70px;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: black;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  margin:  40px 0px 0 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  background: none;
+  background: #FFFFFF;
+  height: 10px;
+  border-radius: 8px;
+  border: 2px solid #004055;
+}
+
+.spot label  {
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  color: black;
+  margin: 0 0 0 20px;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* 深度表記 */
+.depthOfWater {
+  position: fixed;
+  top: 50%;
+  width: 100%;
+  z-index: 5;
+  opacity: 0;
+  border-bottom: 3px solid  #FFFFFF;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+
+/* パララックス　海 */
+.parallax-container {
+  perspective: 100px;
+  height: 700vh;
+  position: relative;
+  top: 400px;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  margin-left: -1500px;
+}
+
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  img{
+    display: block;
+    position: absolute;
+    bottom: 0;
+  }
+} 
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* parallax-layerを隠す海 の設定*/
+.sea-parallax-cover {
+  background: linear-gradient(#000637, 10%, #2acaff);
+  display: block;
+  position: absolute;
+  top: 7.2%;
+  left: 0;
+  right: 0;
+  height: 10000px;
+  width: 100%;
+  z-index: 2;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* 魚表示 */
+.animal-wrapper img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  z-index: 3;
+}
+
+.animal-wrapper {
+  list-style: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  align-items: center;
+  color: #FFFFFF;
+}
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* X軸方向に長い距離を動くアニメーション */
+@keyframes anim_X_long {
+  0% {
+    transform: translate(0px, 0);
+  }
+  100% {
+    transform: translate(-300px, 0);
+  }
+}
+
+/* X軸方向に動くアニメーション */
+@keyframes anim_X {
+  0% {
+    transform: translate(0px, 0);
+  }
+  100% {
+    transform: translate(30px, 0);
+  }  
+}
+
+/* Y軸方向に動くアニメーション */
+@keyframes anim_Y {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px)
+  }
+}
+
+/* 左右反転を繰り返すアニメーション */
+@keyframes anim_flipped {
+  0% {
+    transform: scale(-1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* 魚の写真の配置指定 */
+.sake {
+  position: absolute;
+  width: 4%;
+  top: 1%;
+  left: 35%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_X;
+}
+
+/* 魚の名前字幕 */
+.sake + p {
+  position: absolute;
+  top: 1.45%;
+  left: 37%;
+}
+
+.suzuki {
+  position: absolute;
+  width: 8%;
+  top: 2%;
+  left: 67%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 4.0s;
+  animation-name: anim_X_long;
+}
+
+.suzuki + p {
+  position: absolute;
+  top: 2.8%;
+  left: 63%;
+}
+
+
+.iwashi {
+  position: absolute;
+  max-width: 5%;
+  width: 20%;
+  top: 4%;
+  left: 60%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_X;
+}
+
+.iwashi + p {
+  position: absolute;
+  top: 4.7%;
+  left: 62%;
+}
+
+
+.kumanomi {
+  position: absolute;
+  width: 3.5%;
+  top: 4%;
+  left: 30%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_X;
+}
+
+.kumanomi + p {
+  position: absolute;
+  top: 4.5%;
+  left: 31.2%;
+}
+
+.nannyouhagi {
+  position: absolute;
+  width: 3%;
+  top: 5.5%;
+  left: 45%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_X;
+}
+
+.nannyouhagi + p {
+  position: absolute;
+  top: 6%;
+  left: 45.4%;
+}
+
+.shiroiruka {
+  position: absolute;
+  width: 6%;
+  top: 9%;
+  left: 60%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 3s;
+  animation-name: anim_flipped;
+}
+
+.shiroiruka + p {
+  position: absolute;
+  top: 10.4%;
+  left: 61.3%;
+}
+
+.hirame {
+  position: absolute;
+  width: 6%;
+  top: 8%;
+  left: 30.4%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 2.0s;
+  animation-name: anim_Y;
+}
+
+.hirame + p {
+  position: absolute;
+  top: 8.9%;
+  left: 32%;
+}
+
+.hujitsubo {
+  position: absolute;
+  width: 3%;
+  top: 11%;
+  left: 40%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_X;
+}
+
+.hujitsubo + p {
+  position: absolute;
+  top: 11.8%;
+  left: 40.5%;
+}
+
+.shachi {
+  position: absolute;
+  width: 9%;
+  top: 13%;
+  left: 60%;
+}
+
+.shachi + p {
+  position: absolute;
+  top: 14.7%;
+  left: 63.3%;
+}
+
+.ashika {
+  position: absolute;
+  width: 8%;
+  top: 17%;
+  left: 30%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 5s;
+  animation-name: anim_flipped;
+}
+
+.ashika + p {
+  position: absolute;
+  top: 19%;
+  left: 33%;
+}
+
+
+.pennginn {
+  position: absolute;
+  width: 2%;
+  top: 27%;
+  left: 50%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_Y;
+}
+
+.pennginn + p {
+  position: absolute;
+  top: 29%;
+  left: 50%;
+}
+
+.umigame {
+  position: absolute;
+  width: 7%;
+  top: 37%;
+  left: 35%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_X;
+}
+
+.umigame + p {
+  position: absolute;
+  top: 39%;
+  left: 37%;
+}
+
+
+.banndouiruka {
+  position: absolute;
+  width: 14%;
+  top: 35%;
+  left: 55%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 3.0s;
+  animation-name: anim_Y;
+}
+
+.banndouiruka + p {
+  position: absolute;
+  top: 37.5%;
+  left: 59%;
+}
+
+.hohojirozame {
+  position: absolute;
+  width: 20%;
+  top: 40%;
+  left: 50%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-name: anim_X;
+}
+
+.hohojirozame + p {
+  position: absolute;
+  top: 43%;
+  left: 59%;
+}
+
+.ika {
+  position: absolute;
+  width: 4.5%;
+  top: 42%;
+  left: 34%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 2s;
+  animation-name: anim_X;
+}
+
+.ika + p {
+  position: absolute;
+  top: 42.5%;
+  left: 35.5%;
+}
+
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* ページトップへ移動 潜水艦の配置設定*/
+.submarine {
+  width: 400px;
+  height: 200px;
+  color: #FFFFFF;
+  cursor: pointer;
+  position: absolute;
+  top:650%;
+  left:36.5%;
+  z-index: 5;
+}
+
+.text {
+  position: absolute;
+  color: #FFFFFF;
+  top:655%;
+  left:48%;
+  z-index: 5;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー */
+/* 著作権表記 */
+.copyright p {
+  position: absolute;
+  top:690%;
+  left:32%;
+  color: #FFFFFF;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: small;
+  cursor: pointer;
+  z-index: 5;
+}
