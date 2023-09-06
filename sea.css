@@ -37,7 +37,6 @@ html, body {
   padding: 0px 70px;
   font-family: 'Noto Sans JP', sans-serif;
   color: black;
-  cursor: pointer;
 }
 
 input[type="range"] {
